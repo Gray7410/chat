@@ -99,6 +99,11 @@ const MessageItem = ({ data }) => {
                     </Typography>
                   </Box>
                 )}
+                {data.attach && (
+                  <Box>
+                    <img src={data.attach} width={240} />
+                  </Box>
+                )}
                 {data.message}
               </Box>
               {!data.reply && (
