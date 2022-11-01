@@ -30,9 +30,12 @@ const MainLayout = () => {
   const dispatch = useDispatch();
   const currentRoom = useSelector(getCurrentRoom());
   const messages = useSelector(getMessagesRoom(currentRoom));
-  useEffect(() => {
+    useEffect(() => {
     dispatch(loadMessages());
-  }, [dispatch]);
+    window.addEventListener("storage", () => {
+      dispatch(loadMessages());
+    });
+  }, []);
   const addEmoji = (e) => {
     let sym = e.unified.split("-");
     let codesArray = [];
