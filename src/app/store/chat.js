@@ -17,14 +17,18 @@ const ChatSlice = createSlice({
     userReceive: (state, action) => {
       state.currentUser = action.payload;
       state.isLogin = true;
+      sessionStorage.setItem("currentUser", action.payload);
     },
     userLogout: (state) => {
       state.currentUser = null;
       state.currentRoom = null;
       state.isLogin = false;
+      sessionStorage.removeItem("currentUser");
+      sessionStorage.removeItem("currentRoom");
     },
     roomReceive: (state, action) => {
       state.currentRoom = action.payload;
+      sessionStorage.setItem("currentRoom", action.payload);
     },
     messageReceive: (state, action) => {
       state.messages = action.payload;
@@ -90,12 +94,6 @@ export const sendMessage = (payload) => (dispatch) => {
 export const replyMessage = (payload) => (dispatch) => {
   dispatch(messageReply(payload));
 };
-
-// export const getReplyMessage = (payload) => (state) => {
-//   if (state.chat.messages) {
-//     return state.chat.messages.find((m) => m._id === payload);
-//   }
-// };
 
 export const getMessagesRoom = (payload) => (state) => {
   if (state.chat.messages) {

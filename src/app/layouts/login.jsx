@@ -23,7 +23,7 @@ const LoginLayout = () => {
     setUser(e.target.value);
   };
   const handleChangeRoom = (e) => {
-    setRoom(e.target.value);
+    setRoom(String(e.target.value));
   };
   const handleSubmit = () => {
     dispatch(auth({ user, room }));
